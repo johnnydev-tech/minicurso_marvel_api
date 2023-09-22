@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:http/http.dart' as http;
+import 'package:minicurso_marvel_api/app/models/marvel_character.dart';
 import 'package:minicurso_marvel_api/shared/keys/api_keys.dart';
 
 class MarvelApi {
@@ -16,7 +17,7 @@ class MarvelApi {
     return digest.toString();
   }
 
-  static Future<Map<String, dynamic>> getCharacters() async {
+  static Future<List<MarvelCharacter>> getCharacters() async {
     final timeStamp = DateTime.now().millisecondsSinceEpoch.toString();
     final hash = _generateHash(timeStamp);
 
@@ -27,8 +28,13 @@ class MarvelApi {
 
     if (response.statusCode == 200) {
       final jsonData = json.decode(response.body);
-      print(jsonData);
-      return jsonData['data'];
+      final data = jsonData['data'];
+      final results = data['results'];
+
+      return results
+          .map<MarvelCharacter>(
+              (character) => MarvelCharacter.fromJson(character))
+          .toList();
     } else {
       throw Exception('Falha ao carregar personagens da Marvel');
     }

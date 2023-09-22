@@ -23,6 +23,12 @@ class MarvelCharacter {
     required this.series,
   });
 
+
+
+
+
+  
+
   factory MarvelCharacter.fromJson(Map<String, dynamic> json) {
     return MarvelCharacter(
       id: json['id'],

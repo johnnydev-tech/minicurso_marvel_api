@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minicurso_marvel_api/app/models/marvel_character.dart';
 
 import '../data/marvel_api.dart';
 
@@ -10,12 +11,9 @@ class CharacterListPage extends StatefulWidget {
 }
 
 class _CharacterListPageState extends State<CharacterListPage> {
-  late Future<Map<String, dynamic>> characters;
-
   @override
   void initState() {
     super.initState();
-    characters = MarvelApi.getCharacters();
   }
 
   @override
@@ -24,28 +22,36 @@ class _CharacterListPageState extends State<CharacterListPage> {
       appBar: AppBar(
         title: const Text('Personagens da Marvel'),
       ),
-      body: FutureBuilder<Map<String, dynamic>>(
-        future: characters,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Erro: ${snapshot.error}');
-          } else {
-            final characterList = snapshot.data!['results'] as List<dynamic>;
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: FutureBuilder<List<MarvelCharacter>>(
+          future: MarvelApi.getCharacters(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError || snapshot.data == null) {
+              return Text('Erro: ${snapshot.error}');
+            } else {
+              final characters = snapshot.data;
 
-            return ListView.builder(
-              itemCount: characterList.length,
-              itemBuilder: (context, index) {
-                final character = characterList[index];
-                return ListTile(
-                  title: Text(character['name'] as String),
-                  // Adicione mais informações do personagem, como imagens, aqui.
-                );
-              },
-            );
-          }
-        },
+              return ListView.builder(
+                itemCount: characters!.length,
+                itemBuilder: (context, index) {
+                  MarvelCharacter marvelCharacter = characters[index];
+                  return ListTile(
+                    leading: Image.network(
+                      marvelCharacter.thumbnail.getThumbnailPath(),
+                      width: 50,
+                      height: 50,
+                    ),
+                    title: Text(marvelCharacter.name),
+                    // Adicione mais informações do personagem, como imagens, aqui.
+                  );
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }

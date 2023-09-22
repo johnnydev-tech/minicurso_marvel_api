@@ -7,6 +7,10 @@ class Thumbnail {
     required this.extension,
   });
 
+  String getThumbnailPath() {
+    return '$path.$extension';
+  }
+
   factory Thumbnail.fromJson(Map<String, dynamic> json) {
     return Thumbnail(
       path: json['path'],
