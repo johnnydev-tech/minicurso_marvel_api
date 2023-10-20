@@ -17,7 +17,7 @@ class MarvelApi {
     return digest.toString();
   }
 
-  static Future<List<MarvelCharacter>> getCharacters() async {
+  static Future<List<MarvelCharacterModel>> getCharacters() async {
     final timeStamp = DateTime.now().millisecondsSinceEpoch.toString();
     final hash = _generateHash(timeStamp);
 
@@ -32,8 +32,8 @@ class MarvelApi {
       final results = data['results'];
 
       return results
-          .map<MarvelCharacter>(
-              (character) => MarvelCharacter.fromJson(character))
+          .map<MarvelCharacterModel>(
+              (character) => MarvelCharacterModel.fromJson(character))
           .toList();
     } else {
       throw Exception('Falha ao carregar personagens da Marvel');

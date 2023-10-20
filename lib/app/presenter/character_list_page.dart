@@ -24,7 +24,7 @@ class _CharacterListPageState extends State<CharacterListPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: FutureBuilder<List<MarvelCharacter>>(
+        child: FutureBuilder<List<MarvelCharacterModel>>(
           future: MarvelApi.getCharacters(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -37,7 +37,7 @@ class _CharacterListPageState extends State<CharacterListPage> {
               return ListView.builder(
                 itemCount: characters!.length,
                 itemBuilder: (context, index) {
-                  MarvelCharacter marvelCharacter = characters[index];
+                  MarvelCharacterModel marvelCharacter = characters[index];
                   return ListTile(
                     leading: Image.network(
                       marvelCharacter.thumbnail.getThumbnailPath(),
@@ -45,7 +45,13 @@ class _CharacterListPageState extends State<CharacterListPage> {
                       height: 50,
                     ),
                     title: Text(marvelCharacter.name),
-                    // Adicione mais informações do personagem, como imagens, aqui.
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/detail',
+                        arguments: marvelCharacter,
+                      );
+                    },
                   );
                 },
               );
