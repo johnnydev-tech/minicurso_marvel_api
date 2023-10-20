@@ -1,5 +1,4 @@
-import 'comics/comic.dart';
-import 'series/series.dart';
+
 import 'thumbnail.dart';
 
 class MarvelCharacter {
@@ -9,8 +8,6 @@ class MarvelCharacter {
   String modified;
   Thumbnail thumbnail;
   String resourceURI;
-  Comics comics;
-  Series series;
 
   MarvelCharacter({
     required this.id,
@@ -19,15 +16,7 @@ class MarvelCharacter {
     required this.modified,
     required this.thumbnail,
     required this.resourceURI,
-    required this.comics,
-    required this.series,
   });
-
-
-
-
-
-  
 
   factory MarvelCharacter.fromJson(Map<String, dynamic> json) {
     return MarvelCharacter(
@@ -37,8 +26,6 @@ class MarvelCharacter {
       modified: json['modified'],
       thumbnail: Thumbnail.fromJson(json['thumbnail']),
       resourceURI: json['resourceURI'],
-      comics: Comics.fromJson(json['comics']),
-      series: Series.fromJson(json['series']),
     );
   }
 
@@ -50,8 +37,6 @@ class MarvelCharacter {
       'modified': modified,
       'thumbnail': thumbnail.toJson(),
       'resourceURI': resourceURI,
-      'comics': comics.toJson(),
-      'series': series.toJson(),
     };
   }
 }
