@@ -46,4 +46,4 @@ app.*.map.json
 
 #API KEYS
 #  /lib/app/shared/keys/api_keys.dart
-**/lib/app/shared/keys/api_keys.dart
+/lib/app/shared/keys/api_keys.dart
