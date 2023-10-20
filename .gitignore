@@ -45,4 +45,4 @@ app.*.map.json
 
 
 #API KEYS
-/lib/shared/keys/
+**/lib/shared/keys/
