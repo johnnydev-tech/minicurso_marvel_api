@@ -8,7 +8,6 @@ import '../models/marvel_character.dart';
 
 class MarvelApi {
   static const String baseUrl = 'https://gateway.marvel.com/v1/public';
-  static const String charactersEndpoint = '/characters';
 
   static const String marvelPublicKey = ApiKeys.marvelPublicKey;
   static const String marvelPrivateKey = ApiKeys.marvelPrivateKey;
@@ -20,9 +19,12 @@ class MarvelApi {
   }
 
   static Future<List<MarvelCharacterModel>> getCharacters() async {
+    const String charactersEndpoint = '/characters';
+
     final now = DateTime.now();
     final timeStamp = now.millisecondsSinceEpoch.toString();
     final hash = _generateHash(timeStamp);
+
     final url = Uri.parse(
         '$baseUrl$charactersEndpoint?ts=$timeStamp&apikey=$marvelPublicKey&hash=$hash');
 
@@ -39,6 +41,7 @@ class MarvelApi {
                 (character) => MarvelCharacterModel.fromJson(character))
             .toList();
       } else {
+        print('STATUS CODE: ${response.statusCode}\nBODY:${response.body}');
         throw Exception('Falha ao carregar personagens da Marvel');
       }
     } catch (e) {
