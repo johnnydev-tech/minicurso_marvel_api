@@ -12,9 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  http:
+# Cliente HTTP
+  http: 
+# Hash MD5  
   crypto:
-  flutter_svg:  
 
   cupertino_icons: ^1.0.2
 
