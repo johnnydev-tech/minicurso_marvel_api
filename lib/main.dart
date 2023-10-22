@@ -17,7 +17,6 @@ class MyApp extends StatelessWidget {
       title: 'Marvel API  - Minicurso',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
       ),
       initialRoute: '/',
       routes: {

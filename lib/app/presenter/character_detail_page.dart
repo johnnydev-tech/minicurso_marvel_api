@@ -32,3 +32,4 @@ class CharacterDetailPage extends StatelessWidget {
     );
   }
 }
+
