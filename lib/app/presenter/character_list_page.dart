@@ -40,7 +40,7 @@ class _CharacterListPageState extends State<CharacterListPage> {
                   MarvelCharacterModel marvelCharacter = characters[index];
                   return ListTile(
                     leading: Image.network(
-                      marvelCharacter.thumbnail.getThumbnailPath(),
+                      marvelCharacter.thumbnail.getThumbnailPath,
                       width: 50,
                       height: 50,
                     ),

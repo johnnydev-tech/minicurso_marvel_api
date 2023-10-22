@@ -7,7 +7,7 @@ class Thumbnail {
     required this.extension,
   });
 
-  String getThumbnailPath() {
+  String get getThumbnailPath {
     return '$path.$extension';
   }
 
