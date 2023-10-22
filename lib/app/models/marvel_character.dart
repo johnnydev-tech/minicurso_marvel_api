@@ -1,12 +1,11 @@
 import 'thumbnail.dart';
 
 class MarvelCharacterModel {
-  int id;
-  String name;
-  String description;
-  String modified;
-  Thumbnail thumbnail;
-  String resourceURI;
+  final int id;
+  final String name;
+  final String description;
+  final String modified;
+  final Thumbnail thumbnail;
 
   MarvelCharacterModel({
     required this.id,
@@ -14,7 +13,6 @@ class MarvelCharacterModel {
     required this.description,
     required this.modified,
     required this.thumbnail,
-    required this.resourceURI,
   });
 
   factory MarvelCharacterModel.fromJson(Map<String, dynamic> json) {
@@ -24,7 +22,6 @@ class MarvelCharacterModel {
       description: json['description'],
       modified: json['modified'],
       thumbnail: Thumbnail.fromJson(json['thumbnail']),
-      resourceURI: json['resourceURI'],
     );
   }
 
@@ -35,7 +32,6 @@ class MarvelCharacterModel {
       'description': description,
       'modified': modified,
       'thumbnail': thumbnail.toJson(),
-      'resourceURI': resourceURI,
     };
   }
 }
