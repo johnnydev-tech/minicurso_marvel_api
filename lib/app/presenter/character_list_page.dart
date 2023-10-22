@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minicurso_marvel_api/app/models/marvel_character.dart';
+import 'package:minicurso_marvel_api/app/models/marvel_character_model.dart';
 
 import '../data/marvel_api.dart';
 

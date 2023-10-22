@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app/models/marvel_character.dart';
+import 'app/models/marvel_character_model.dart';
 import 'app/presenter/character_detail_page.dart';
 import 'app/presenter/character_list_page.dart';
 

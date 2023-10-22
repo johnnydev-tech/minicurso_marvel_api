@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../shared/keys/api_keys.dart';
-import '../models/marvel_character.dart';
+import '../models/marvel_character_model.dart';
 
 class MarvelApi {
   static const String baseUrl = 'https://gateway.marvel.com/v1/public';
