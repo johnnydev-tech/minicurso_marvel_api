@@ -1,7 +1,6 @@
-
 import 'thumbnail.dart';
 
-class MarvelCharacter {
+class MarvelCharacterModel {
   int id;
   String name;
   String description;
@@ -9,7 +8,7 @@ class MarvelCharacter {
   Thumbnail thumbnail;
   String resourceURI;
 
-  MarvelCharacter({
+  MarvelCharacterModel({
     required this.id,
     required this.name,
     required this.description,
@@ -18,8 +17,8 @@ class MarvelCharacter {
     required this.resourceURI,
   });
 
-  factory MarvelCharacter.fromJson(Map<String, dynamic> json) {
-    return MarvelCharacter(
+  factory MarvelCharacterModel.fromJson(Map<String, dynamic> json) {
+    return MarvelCharacterModel(
       id: json['id'],
       name: json['name'],
       description: json['description'],
