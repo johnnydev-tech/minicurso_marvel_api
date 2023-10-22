@@ -12,11 +12,6 @@ class CharacterListPage extends StatefulWidget {
 
 class _CharacterListPageState extends State<CharacterListPage> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
