@@ -19,7 +19,7 @@ class CharacterDetailPage extends StatelessWidget {
         child: Column(
           children: [
             Image.network(
-              character.thumbnail.getThumbnailPath(),
+              character.thumbnail.getThumbnailPath,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * .4,
               fit: BoxFit.cover,
