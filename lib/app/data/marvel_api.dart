@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../../shared/keys/api_keys.dart';
@@ -41,7 +42,8 @@ class MarvelApi {
                 (character) => MarvelCharacterModel.fromJson(character))
             .toList();
       } else {
-        print('STATUS CODE: ${response.statusCode}\nBODY:${response.body}');
+        debugPrint(
+            'STATUS CODE: ${response.statusCode}\nBODY:${response.body}');
         throw Exception('Falha ao carregar personagens da Marvel');
       }
     } catch (e) {
