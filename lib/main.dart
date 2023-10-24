@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:minicurso_marvel_api/shared/theme/custom_theme.dart';
 
 import 'app/models/marvel_character_model.dart';
-import 'app/presenter/character_detail_page.dart';
-import 'app/presenter/character_list_page.dart';
+import 'app/presenter/character/character_detail_page.dart';
+import 'app/presenter/character/character_list_page.dart';
+import 'app/presenter/home/home_page.dart';
+import 'shared/theme/custom_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,8 +20,9 @@ class MyApp extends StatelessWidget {
       theme: CustomTheme.darkTheme,
       initialRoute: '/',
       routes: {
-        '/': (context) => const CharacterListPage(),
-        '/detail': (context) => CharacterDetailPage(
+        '/': (context) => const HomePage(),
+        '/character': (context) => const CharacterListPage(),
+        '/character/detail': (context) => CharacterDetailPage(
               character: ModalRoute.of(context)!.settings.arguments
                   as MarvelCharacterModel,
             ),

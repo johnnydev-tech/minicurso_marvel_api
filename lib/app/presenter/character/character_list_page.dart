@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../data/marvel_api.dart';
-import '../models/marvel_character_model.dart';
+import '../../data/marvel_api.dart';
+import '../../models/marvel_character_model.dart';
 
 class CharacterListPage extends StatefulWidget {
   const CharacterListPage({Key? key}) : super(key: key);
@@ -14,9 +14,6 @@ class _CharacterListPageState extends State<CharacterListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Personagens da Marvel'),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: FutureBuilder<List<MarvelCharacterModel>>(
@@ -53,7 +50,7 @@ class _CharacterListPageState extends State<CharacterListPage> {
                       onTap: () {
                         Navigator.pushNamed(
                           context,
-                          '/detail',
+                          '/character/detail',
                           arguments: marvelCharacter,
                         );
                       },

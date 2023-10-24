@@ -143,15 +143,13 @@ class CustomTheme {
         backgroundColor: Palette.darkAccent,
         selectedItemColor: Palette.white,
         unselectedItemColor: Palette.gray,
+        type: BottomNavigationBarType.fixed,
       ),
       colorScheme: ThemeData().colorScheme.copyWith(
             primary: Palette.primary,
             secondary: Palette.primaryAccent,
             brightness: Brightness.dark,
           ),
-      bottomAppBarTheme: const BottomAppBarTheme(
-        color: Palette.darkAccent,
-      ),
     );
     return darkTheme;
   }
