@@ -34,13 +34,15 @@ class MarvelApi {
 
       if (response.statusCode == 200) {
         final jsonData = json.decode(response.body);
-        final data = jsonData['data'];
+        Map<String, dynamic> data = jsonData['data'];
         final results = data['results'];
 
-        return results
+        List<MarvelCharacterModel> characters = results
             .map<MarvelCharacterModel>(
                 (character) => MarvelCharacterModel.fromJson(character))
             .toList();
+
+        return characters;
       } else {
         debugPrint(
             'STATUS CODE: ${response.statusCode}\nBODY:${response.body}');
