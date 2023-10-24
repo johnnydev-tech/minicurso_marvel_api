@@ -139,6 +139,11 @@ class CustomTheme {
         backgroundColor: Palette.dark,
         elevation: 1,
       ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: Palette.darkAccent,
+        selectedItemColor: Palette.white,
+        unselectedItemColor: Palette.gray,
+      ),
       colorScheme: ThemeData().colorScheme.copyWith(
             primary: Palette.primary,
             secondary: Palette.primaryAccent,
