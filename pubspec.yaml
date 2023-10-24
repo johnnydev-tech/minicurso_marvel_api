@@ -16,6 +16,8 @@ dependencies:
   http: 
 # Hash MD5  
   crypto:
+# Google Fonts
+  google_fonts: 
 
   cupertino_icons: ^1.0.2
 
