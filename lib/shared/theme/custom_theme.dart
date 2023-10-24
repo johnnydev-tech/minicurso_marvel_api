@@ -145,6 +145,24 @@ class CustomTheme {
         unselectedItemColor: Palette.gray,
         type: BottomNavigationBarType.fixed,
       ),
+      tabBarTheme: TabBarTheme(
+        labelColor: Palette.white,
+        unselectedLabelColor: Palette.gray,
+        indicatorSize: TabBarIndicatorSize.label,
+        labelStyle: GoogleFonts.poppins(
+          fontSize: 16.0,
+        ),
+        unselectedLabelStyle: GoogleFonts.poppins(
+          fontWeight: FontWeight.w400,
+          fontSize: 16.0,
+        ),
+        indicator: const UnderlineTabIndicator(
+          borderSide: BorderSide(
+            width: 2.0,
+            color: Palette.primary,
+          ),
+        ),
+      ),
       colorScheme: ThemeData().colorScheme.copyWith(
             primary: Palette.primary,
             secondary: Palette.primaryAccent,

@@ -14,54 +14,52 @@ class _CharacterListPageState extends State<CharacterListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: FutureBuilder<List<MarvelCharacterModel>>(
-          future: MarvelApi.getCharacters(),
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.waiting:
-                return const Center(child: CircularProgressIndicator());
-              case ConnectionState.done:
-                if (snapshot.hasError || snapshot.data == null) {
-                  return Text('Erro: ${snapshot.error}');
-                }
-                final characters = snapshot.data!;
-                return ListView.builder(
-                  itemCount: characters.length,
-                  itemBuilder: (context, index) {
-                    final marvelCharacter = characters[index];
-                    return ListTile(
-                      leading: Hero(
-                        tag: marvelCharacter.id,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: Image.network(
-                            marvelCharacter.thumbnail.getThumbnailPath,
-                            width: 50,
-                            height: 50,
-                            fit: BoxFit.cover,
-                          ),
+      body: FutureBuilder<List<MarvelCharacterModel>>(
+        future: MarvelApi.getCharacters(),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return const Center(child: CircularProgressIndicator());
+            case ConnectionState.done:
+              if (snapshot.hasError || snapshot.data == null) {
+                return Text('Erro: ${snapshot.error}');
+              }
+              final characters = snapshot.data!;
+              return ListView.builder(
+                itemCount: characters.length,
+                padding: const EdgeInsets.all(8),
+                itemBuilder: (context, index) {
+                  final marvelCharacter = characters[index];
+                  return ListTile(
+                    leading: Hero(
+                      tag: marvelCharacter.id,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                          marvelCharacter.thumbnail.getThumbnailPath,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      title: Text(marvelCharacter.name),
-                      subtitle: Text(
-                          '${marvelCharacter.comics.available} quadrinhos'),
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          '/character/detail',
-                          arguments: marvelCharacter,
-                        );
-                      },
-                    );
-                  },
-                );
-              default:
-                return const Center(child: Text('Carregando...'));
-            }
-          },
-        ),
+                    ),
+                    title: Text(marvelCharacter.name),
+                    subtitle:
+                        Text('${marvelCharacter.comics.available} quadrinhos'),
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/character/detail',
+                        arguments: marvelCharacter,
+                      );
+                    },
+                  );
+                },
+              );
+            default:
+              return const Center(child: Text('Carregando...'));
+          }
+        },
       ),
     );
   }
