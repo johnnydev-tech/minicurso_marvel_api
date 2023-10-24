@@ -35,13 +35,16 @@ class _CharacterListPageState extends State<CharacterListPage> {
                   itemBuilder: (context, index) {
                     final marvelCharacter = characters[index];
                     return ListTile(
-                      leading: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                          marvelCharacter.thumbnail.getThumbnailPath,
-                          width: 50,
-                          height: 50,
-                          fit: BoxFit.cover,
+                      leading: Hero(
+                        tag: marvelCharacter.id,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                            marvelCharacter.thumbnail.getThumbnailPath,
+                            width: 50,
+                            height: 50,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       title: Text(marvelCharacter.name),
