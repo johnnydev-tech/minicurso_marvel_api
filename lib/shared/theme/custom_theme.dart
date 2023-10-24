@@ -65,6 +65,18 @@ class CustomTheme {
           color: Palette.light,
         ),
       ),
+      listTileTheme: ListTileThemeData(
+        titleTextStyle: GoogleFonts.poppins(
+          color: Palette.white,
+          fontWeight: FontWeight.w600,
+          fontSize: 16.0,
+        ),
+        subtitleTextStyle: GoogleFonts.poppins(
+          color: Palette.dark,
+          fontWeight: FontWeight.w400,
+          fontSize: 14.0,
+        ),
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all<Color>(Palette.primary),
