@@ -88,13 +88,13 @@ class CustomTheme {
           padding: MaterialStateProperty.all<EdgeInsets>(
             const EdgeInsets.symmetric(
               horizontal: 8.0,
-              vertical: 4.0,
+              vertical: 16.0,
             ),
           ),
           textStyle: MaterialStateProperty.all<TextStyle>(
             GoogleFonts.poppins(
-              fontWeight: FontWeight.bold,
-              fontSize: 16.0,
+              fontWeight: FontWeight.w600,
+              fontSize: 14.0,
               color: Palette.light,
             ),
           ),
@@ -104,26 +104,17 @@ class CustomTheme {
         style: ButtonStyle(
           textStyle: MaterialStateProperty.all<TextStyle>(
             GoogleFonts.poppins(
-              fontWeight: FontWeight.bold,
-              fontSize: 16.0,
-              color: Palette.white,
-            ),
-          ),
-        ),
-      ),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: ButtonStyle(
-          side: MaterialStateProperty.all<BorderSide>(
-            const BorderSide(
-              width: .5,
+              fontWeight: FontWeight.w600,
+              fontSize: 14.0,
               color: Palette.light,
             ),
           ),
-        ),
-      ),
-      radioTheme: RadioThemeData(
-        fillColor: MaterialStateProperty.all<Color>(
-          Palette.primary,
+          padding: MaterialStateProperty.all<EdgeInsets>(
+            const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 16.0,
+            ),
+          ),
         ),
       ),
       appBarTheme: AppBarTheme(

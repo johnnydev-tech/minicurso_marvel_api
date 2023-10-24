@@ -29,28 +29,34 @@ class _CharacterListPageState extends State<CharacterListPage> {
                 itemCount: characters.length,
                 padding: const EdgeInsets.all(8),
                 itemBuilder: (context, index) {
-                  final marvelCharacter = characters[index];
+                  final character = characters[index];
                   return ListTile(
                     leading: Hero(
-                      tag: marvelCharacter.id,
+                      tag: character.id,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.network(
-                          marvelCharacter.thumbnail.getThumbnailPath,
+                          character.thumbnail.getThumbnailPath,
                           width: 50,
                           height: 50,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
-                    title: Text(marvelCharacter.name),
-                    subtitle:
-                        Text('${marvelCharacter.comics.available} quadrinhos'),
+                    title: Hero(
+                      tag: '${character.id}name',
+                      child: Text(
+                        character.name,
+                      ),
+                    ),
+                    subtitle: Text(
+                      '${character.comics.available} quadrinhos',
+                    ),
                     onTap: () {
                       Navigator.pushNamed(
                         context,
                         '/character/detail',
-                        arguments: marvelCharacter,
+                        arguments: character,
                       );
                     },
                   );
