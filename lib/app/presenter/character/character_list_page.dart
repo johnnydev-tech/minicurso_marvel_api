@@ -11,24 +11,64 @@ class CharacterListPage extends StatefulWidget {
 }
 
 class _CharacterListPageState extends State<CharacterListPage> {
+  final ScrollController _scrollController = ScrollController();
+  List<MarvelCharacterModel> characters = [];
+  int page = 0;
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_loadMoreData);
+    _loadData();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _loadData() async {
+    if (!isLoading) {
+      setState(() {
+        isLoading = true;
+      });
+
+      final newCharacters = await MarvelApi.getCharacters(page);
+
+      setState(() {
+        isLoading = false;
+        characters.addAll(newCharacters);
+        page++;
+      });
+    }
+  }
+
+  void _loadMoreData() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      _loadData();
+    }
+  }
+
+  Widget loadingIndicator() {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<MarvelCharacterModel>>(
-        future: MarvelApi.getCharacters(),
-        builder: (context, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return const Center(child: CircularProgressIndicator());
-            case ConnectionState.done:
-              if (snapshot.hasError || snapshot.data == null) {
-                return Text('Erro: ${snapshot.error}');
-              }
-              final characters = snapshot.data!;
-              return ListView.builder(
-                itemCount: characters.length,
-                padding: const EdgeInsets.all(8),
-                itemBuilder: (context, index) {
+      body: characters.isEmpty
+          ? loadingIndicator()
+          : ListView.builder(
+              controller: _scrollController,
+              itemCount: characters.length + 1,
+              padding: const EdgeInsets.all(8),
+              itemBuilder: (context, index) {
+                if (index < characters.length) {
                   final character = characters[index];
                   return ListTile(
                     leading: Hero(
@@ -60,13 +100,11 @@ class _CharacterListPageState extends State<CharacterListPage> {
                       );
                     },
                   );
-                },
-              );
-            default:
-              return const Center(child: Text('Carregando...'));
-          }
-        },
-      ),
+                } else {
+                  return loadingIndicator();
+                }
+              },
+            ),
     );
   }
 }

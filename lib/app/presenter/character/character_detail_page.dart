@@ -49,25 +49,26 @@ class CharacterDetailPage extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: Container(
-        height: 80.0,
         color: Palette.darkAccent,
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Row(
-          children: [
-            Expanded(
-              child: TextButton(
-                child: const Text('Action'),
-                onPressed: () {},
+        padding: const EdgeInsets.all(16.0),
+        child: SafeArea(
+          child: Row(
+            children: [
+              Expanded(
+                child: TextButton(
+                  child: const Text('Action'),
+                  onPressed: () {},
+                ),
               ),
-            ),
-            Expanded(
-              child: ElevatedButton.icon(
-                icon: const Icon(Icons.favorite),
-                label: const Text('Favoritar'),
-                onPressed: () {},
+              Expanded(
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.favorite),
+                  label: const Text('Favoritar'),
+                  onPressed: () {},
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

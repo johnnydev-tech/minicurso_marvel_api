@@ -19,7 +19,7 @@ class MarvelApi {
     return digest.toString();
   }
 
-  static Future<List<MarvelCharacterModel>> getCharacters() async {
+  static Future<List<MarvelCharacterModel>> getCharacters(int page) async {
     const String charactersEndpoint = '/characters';
 
     final now = DateTime.now();
@@ -27,7 +27,7 @@ class MarvelApi {
     final hash = _generateHash(timeStamp);
 
     final url = Uri.parse(
-        '$baseUrl$charactersEndpoint?ts=$timeStamp&apikey=$marvelPublicKey&hash=$hash');
+        '$baseUrl$charactersEndpoint?ts=$timeStamp&apikey=$marvelPublicKey&hash=$hash&limit=100&offset=${page * 100}');
 
     try {
       final response = await http.get(url);
