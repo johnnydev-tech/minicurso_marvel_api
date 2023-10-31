@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:minicurso_marvel_api/shared/theme/palette.dart';
 
+import '../../../shared/theme/palette.dart';
 import '../../models/marvel_character_model.dart';
 
 class CharacterDetailPage extends StatelessWidget {
@@ -33,6 +33,18 @@ class CharacterDetailPage extends StatelessWidget {
               children: [
                 Hero(
                   tag: '${character.id}name',
+                  flightShuttleBuilder: (
+                    flightContext,
+                    animation,
+                    flightDirection,
+                    fromHeroContext,
+                    toHeroContext,
+                  ) {
+                    return DefaultTextStyle(
+                      style: DefaultTextStyle.of(toHeroContext).style,
+                      child: toHeroContext.widget,
+                    );
+                  },
                   child: Text(
                     character.name,
                     style: Theme.of(context).textTheme.headlineSmall,
