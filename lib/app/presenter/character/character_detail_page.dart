@@ -20,23 +20,38 @@ class CharacterDetailPage extends StatelessWidget {
         children: [
           Hero(
             tag: character.id,
-            child: Image.network(
-              character.thumbnail.getThumbnailPath,
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * .4,
-              fit: BoxFit.cover,
+            child: Stack(
+              children: [
+                Image.network(
+                  character.thumbnail.getThumbnailPath,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * .4,
+                  fit: BoxFit.cover,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * .4,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Palette.darkAccent.withOpacity(0),
+                        Palette.dark,
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                Hero(
-                  tag: '${character.id}name',
-                  child: Text(
-                    character.name,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
+                Text(
+                  character.name,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 const SizedBox(height: 10),
                 Text(

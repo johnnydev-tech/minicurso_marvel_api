@@ -83,11 +83,8 @@ class _CharacterListPageState extends State<CharacterListPage> {
                         ),
                       ),
                     ),
-                    title: Hero(
-                      tag: '${character.id}name',
-                      child: Text(
-                        character.name,
-                      ),
+                    title: Text(
+                      character.name,
                     ),
                     subtitle: Text(
                       '${character.comics.available} quadrinhos',
